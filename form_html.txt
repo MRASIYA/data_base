@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button onclick="sendData()">Submit</button>
+    <script>
+      function sendData() {
+        fetch("https://script.google.com/macros/s/AKfycbzmKYuWl8w5cIBGAGbu3FbQutc674ZnXuh4hXv9x1oRLeQWPDkvqXkyrgK_3G1ctbxeRw/exec", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: "John Doe",
+            quantity: 5
+          })
+        })
+        .then(response => response.text())
+        .then(result => {
+          console.log("Success:", result);
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+      }
+    </script>
+  </body>
+</html>
