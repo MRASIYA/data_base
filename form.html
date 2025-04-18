@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <label for="name">Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" />
+    <br />
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" placeholder="Enter quantity" />
+    <br />
+    <button onclick="sendData()">Submit</button>
+    <script>
+      function sendData() {
+        const name = document.getElementById("name").value;
+        const quantity = document.getElementById("quantity").value;
+
+        fetch("https://script.google.com/macros/s/AKfycbzmKYuWl8w5cIBGAGbu3FbQutc674ZnXuh4hXv9x1oRLeQWPDkvqXkyrgK_3G1ctbxeRw/exec", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            quantity: quantity
+          })
+        })
+        .then(response => response.text())
+        .then(result => {
+          console.log("Success:", result);
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+      }
+    </script>
+  </body>
+</html>
